@@ -6,31 +6,44 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    Rigidbody rb;
+    [SerializeField] float mainThrust = 100f;
+    [SerializeField] float rotationThrust = 100f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        processInput();
+        ProcessThrust();
+        ProcessRotation();
     }
 
-    void processInput() 
+    void ProcessThrust() 
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Pressed Space");
+            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.D))
-        {
-            Debug.Log("Pressed D");
-        }
+    }
+
+    void ProcessRotation() 
+    {
         if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("Pressed A");
+            ApplyRotation(rotationThrust);
         }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            ApplyRotation(-rotationThrust);
+        }
+    }
+
+    void ApplyRotation(float rotationThisFrame)
+    {
+        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
     }
 }
