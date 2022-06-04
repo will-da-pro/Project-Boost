@@ -20,30 +20,35 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        switch(other.gameObject.tag)
+        if (isTransitioning) { return; }
+        switch (other.gameObject.tag)
         {
             case "Friendly":
                 Debug.Log("Friendly");
                 break;
             case "Finish":
                 StartSuccessSequence();
-                audioSource.PlayOneShot(successSound);
                 break;
             default:
                 StartCrashSequence();
-                audioSource.PlayOneShot(crashSound);
                 break;
         }
     }
 
     void StartSuccessSequence()
     {
+        isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(successSound);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", delayTime);
     }
 
     void StartCrashSequence()
     {
+        isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashSound);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delayTime);
     }
