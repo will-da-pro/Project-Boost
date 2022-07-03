@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Under.unity
     guid: b912f1381745068468ebe14b652d935f
+  - enabled: 1
+    path: Assets/Scenes/S bend.unity
+    guid: 990b2d5439e74f7458f81aa99276f4af
   m_configObjects: {}
