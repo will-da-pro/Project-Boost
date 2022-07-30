@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/pipes.unity
     guid: 9a0d4ba1bd60ec14886cced8fbf79007
+  - enabled: 1
+    path: Assets/Scenes/Movement.unity
+    guid: 94d48c89ddbad054faaca34d6caa27dd
   m_configObjects: {}
